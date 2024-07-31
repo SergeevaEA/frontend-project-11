@@ -18,8 +18,8 @@ jobs:
         node-version: [18.x]
 
     steps:
-        # Check-out repository under GitHub workspace
-        # https://github.com/actions/checkout
+      # Check-out repository under GitHub workspace
+      # https://github.com/actions/checkout
       - uses: actions/checkout@v3
         # Step's name
       - name: Use Node.js ${{ matrix.node-version }}
@@ -32,5 +32,5 @@ jobs:
           cache: 'npm'
       - run: make install
       - run: make lint
-      env:
-        CI: true
+      - env:
+         CI: true
