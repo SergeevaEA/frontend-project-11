@@ -5,9 +5,8 @@ install-deps:
 	npm ci
 
 lint:
-	nix eslint .
+	npx eslint .
 
 publish:
-	npm publish --dry-run
-
-.PHONY: tests
+	npm publish --dry-run 
+	
