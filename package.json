@@ -4,10 +4,13 @@
   "type": "module",
   "description": "RSS",
   "main": "index.js",
+  "simple-git-hooks": {
+    "pre-push": "make lint"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Sergeeva Ekaterina",
   "license": "ISC",
   "devDependencies": {
     "eslint": "^8.50.0",

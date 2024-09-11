@@ -6,3 +6,6 @@
 
 ### Github Actions:
 [![Node CI](https://github.com/SergeevaEA/frontend-project-11/actions/workflows/main.yml/badge.svg)](https://github.com/SergeevaEA/frontend-project-11/actions/workflows/main.yml)
+
+### Setup
+make install
