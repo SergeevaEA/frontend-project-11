@@ -1,12 +1,9 @@
-install: install-deps
-	npx simple-git-hooks
+#develop: npx webpack serve
+# команда для развертывания окружения (установки зависимостей проекта)
+install:
+    npm ci
 
-install-deps:
-	npm ci
+#build: NODE_ENV=production npx webpack
 
 lint:
-	npx eslint .
-
-publish:
-	npm publish --dry-run 
-	
+    npx eslint .
