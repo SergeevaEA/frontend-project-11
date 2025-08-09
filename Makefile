@@ -1,9 +1,10 @@
 #develop: npx webpack serve
-# команда для развертывания окружения (установки зависимостей проекта)
-install:
-    npm ci
-
 #build: NODE_ENV=production npx webpack
+# команда для развертывания окружения (установки зависимостей проекта)
+
+install:
+	npm ci
 
 lint:
-    npx eslint .
+	npx eslint .
+
