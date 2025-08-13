@@ -29,12 +29,17 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: npm install
+      - name: install dependencies
         # Install and build project
         run: make install
         # Add environment variables
         env:
           CI: true
 
-      - name: Run linter
+      - name: linter
         run: make lint
+
+      - name: build project
+        run: |
+          make clean
+          make build

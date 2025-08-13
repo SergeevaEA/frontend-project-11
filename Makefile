@@ -1,10 +1,24 @@
-#develop: npx webpack serve
-#build: NODE_ENV=production npx webpack
-# команда для развертывания окружения (установки зависимостей проекта)
-
+# Установка зависимостей
 install:
 	npm ci
 
+# Запуск дев-сервера
+dev:
+	npm run dev
+
+# Сборка проекта для продакшена
+build:
+	NODE_ENV=production npm run build
+
+# Просмотр сборки локально
+preview:
+	npm run preview
+
+# Проверка кода линтером
 lint:
 	npx eslint .
+
+# Очистка папки сборки
+clean:
+	rm -rf dist
 
