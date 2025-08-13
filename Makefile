@@ -8,7 +8,7 @@ dev:
 
 # Сборка проекта для продакшена
 build:
-	NODE_ENV=production npm run build
+	NODE_ENV=production npx vite build
 
 # Просмотр сборки локально
 preview:
