@@ -19,6 +19,11 @@ export default {
       input: resolve(__dirname, 'index.html'),
     },
   },
+  devServer: {
+    client: {
+      overlay: false,
+    },
+  },
   server: {
     port: 8080,
     hot: true,
