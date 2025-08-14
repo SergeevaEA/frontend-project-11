@@ -1,4 +1,4 @@
-import path from 'path'
+import path, { resolve } from 'path'
 
 export default {
   root: '.',
@@ -12,6 +12,11 @@ export default {
       scss: {
         quietDeps: true, // отключает Deprecation Warning из node_modules
       },
+    },
+  },
+  build: {
+    rollupOptions: {
+      input: resolve(__dirname, 'index.html'),
     },
   },
   server: {
