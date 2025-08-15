@@ -16,7 +16,7 @@ preview:
 
 # Проверка кода линтером
 lint:
-	npx eslint .
+	npx eslint . --ignore-pattern dist
 
 # Очистка папки сборки
 clean:
