@@ -12,7 +12,13 @@ export default defineConfig([
   },
   {
     files: ['**/*.{js,mjs,cjs}'],
-    languageOptions: { globals: globals.node },
+    languageOptions: {
+      ecmaVersion: 2024, // поддержка современного синтаксиса
+      globals: {
+        ...globals.node, // Node.js
+        ...globals.browser, // Browser: window, document и т.д.
+      },
+    },
     // отключить запрет на console
     rules: {
       'no-console': 'off',
