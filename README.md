@@ -4,13 +4,23 @@
 # RSS Reader
 
 ### Locally
+
+Клонируем репозиторий
 ```
-# Клонируем репозиторий
 git clone git@github.com:SergeevaEA/frontend-project-11.git
+```
 
-# Устанавливаем зависимости
+Устанавливаем зависимости
+```
 make install
+```
 
-# Запускаем dev-сервер (http://localhost:8080)
+Запускаем dev-сервер (http://localhost:8080)
+```
 make dev
+```
+
+### Online
+```
+https://frontend-project-11-5ll9.vercel.app/
 ```
