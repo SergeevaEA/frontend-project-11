@@ -6,17 +6,26 @@ import '../css/styles.scss'
 
 import * as yup from 'yup'
 import onChange from 'on-change'
+import isEmpty from 'lodash/isEmpty.js'
 
 const schema = yup.string().url('Ссылка должна быть валидным URL').required('Ссылка должна быть валидным URL')
-const isURLValid = (url, feeds) => {
+const validate = (url, feeds) => {
   return schema.validate(url)
     .then(() => {
       if (feeds.includes(url)) {
         return Promise.reject(new yup.ValidationError('Такой URL уже существует'))
       }
+      return true;
     })
-    .catch(error => console.log(error.message))
 }
+
+const handleProcessState = () => {
+
+}
+
+const renderErrors
+
+const render
 
 export default () => {
   const elements = {
@@ -30,8 +39,7 @@ export default () => {
   const initialState = {
     feeds: [], // список новостных лент (добавленных URL)
     process: {
-      processState: 'filling', // filling, sending, sent, error
-      processError: null, // ошибки при отправке
+      processState: 'filling', // filling, pushing
     },
     form: {
       valid: true, // валидна ли форма
@@ -46,4 +54,26 @@ export default () => {
       },
     },
   }
+
+  const state = onChange(initialState, render())
+  elements.fields.url.addEventListener('input', (e) => {
+    const { value } = e.target
+    state.form.fields.url = value
+    state.form.fieldsUI.touched.url = true
+    const errors = validate()
+    errors.catch((error) => state.form.errors = error)
+    state.form.valid = isEmpty(state.form.errors)
+  })
+
+  elements.submitButton.addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    state.process.processState = 'pushing'
+    state.process.processError = null
+
+    const url = state.form.fields.url
+    if (state.form.valid) {
+      state.feeds.push(url)
+    }
+  })
 }
