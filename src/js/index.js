@@ -12,6 +12,10 @@ const elements = {
   submitButton: document.querySelector('input[type="submit"]'),
 }
 
+window.addEventListener('DOMContentLoaded', () => {
+  elements.fields.url.focus() // ставим фокус после того, как DOM загружен
+})
+
 const schema = yup.string().url('Ссылка должна быть валидным URL').required('Ссылка должна быть валидным URL')
 const validate = (url, feeds) => {
   return schema.validate(url)
@@ -74,6 +78,8 @@ export default () => {
     const url = state.form.fields.url
     if (state.form.valid) {
       state.feeds.push(url)
+      state.form.fields.url = ''
+      elements.fields.url.focus()
     }
   })
 }
