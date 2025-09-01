@@ -15,17 +15,18 @@ const validate = (url, feeds) => {
       if (feeds.includes(url)) {
         return Promise.reject(new yup.ValidationError('Такой URL уже существует'))
       }
-      return true;
+      return true
     })
 }
 
-const handleProcessState = () => {
-
+const render = (elements, initialState) => {
+  if (!initialState.form.valid) {
+    elements.fields.url.classList.add('invalid')
+  }
+  else {
+    elements.fields.url.classList.remove('invalid')
+  }
 }
-
-const renderErrors
-
-const render
 
 export default () => {
   const elements = {
@@ -57,11 +58,12 @@ export default () => {
 
   const state = onChange(initialState, render())
   elements.fields.url.addEventListener('input', (e) => {
+    state.process.processState = 'filling'
     const { value } = e.target
     state.form.fields.url = value
     state.form.fieldsUI.touched.url = true
     const errors = validate()
-    errors.catch((error) => state.form.errors = error)
+    errors.catch(error => state.form.errors = error)
     state.form.valid = isEmpty(state.form.errors)
   })
 
@@ -69,7 +71,6 @@ export default () => {
     e.preventDefault()
 
     state.process.processState = 'pushing'
-    state.process.processError = null
 
     const url = state.form.fields.url
     if (state.form.valid) {
