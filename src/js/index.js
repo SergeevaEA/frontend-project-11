@@ -1,58 +1,18 @@
 import '../css/styles.scss'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import * as yup from 'yup'
 import onChange from 'on-change'
 
-const elements = {
-  form: document.querySelector('.rss-form'),
-  fields: {
-    url: document.getElementById('url-input'),
-  },
-  submitButton: document.querySelector('input[type="submit"]'),
-}
+import initialState from './initialState.js'
+import render from './render.js'
+import validate from './validate.js'
+import elements from './elements.js'
 
 window.addEventListener('DOMContentLoaded', () => {
   elements.fields.url.focus() // ставим фокус после того, как DOM загружен
 })
 
-const schema = yup.string().url('Ссылка должна быть валидным URL').required('Ссылка должна быть валидным URL')
-const validate = (url, feeds) => {
-  return schema.validate(url)
-    .then(() => {
-      if (feeds.includes(url)) {
-        return Promise.reject(new yup.ValidationError('Такой URL уже существует'))
-      }
-      return true
-    })
-}
-
-const render = (path, value) => {
-  if (path === 'form.valid') {
-    elements.fields.url.classList.toggle('is-invalid', !value)
-  }
-}
-
 export default () => {
-  const initialState = {
-    feeds: [], // список новостных лент (добавленных URL)
-    process: {
-      processState: 'filling', // filling, pushing
-    },
-    form: {
-      valid: true, // валидна ли форма
-      errors: {}, // ошибки валидации
-      fields: {
-        url: '', // текстовое поле для URL
-      },
-      fieldsUI: {
-        touched: {
-          url: false, // был ли пользовательский ввод
-        },
-      },
-    },
-  }
-
   const state = onChange(initialState, render)
   elements.fields.url.addEventListener('input', (e) => {
     state.process.processState = 'filling'
