@@ -1,12 +1,16 @@
-// Import our custom CSS
 import '../css/styles.scss'
-
-// Import all of Bootstrap's JS
-// import * as bootstrap from 'bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 import * as yup from 'yup'
 import onChange from 'on-change'
-import isEmpty from 'lodash/isEmpty.js'
+
+const elements = {
+  form: document.querySelector('.rss-form'),
+  fields: {
+    url: document.getElementById('url-input'),
+  },
+  submitButton: document.querySelector('input[type="submit"]'),
+}
 
 const schema = yup.string().url('Ссылка должна быть валидным URL').required('Ссылка должна быть валидным URL')
 const validate = (url, feeds) => {
@@ -19,24 +23,13 @@ const validate = (url, feeds) => {
     })
 }
 
-const render = (elements, initialState) => {
-  if (!initialState.form.valid) {
-    elements.fields.url.classList.add('invalid')
-  }
-  else {
-    elements.fields.url.classList.remove('invalid')
+const render = (path, value) => {
+  if (path === 'form.valid') {
+    elements.fields.url.classList.toggle('is-invalid', !value)
   }
 }
 
 export default () => {
-  const elements = {
-    form: document.querySelector('.rss-form'),
-    fields: {
-      url: document.getElementById('url-input'),
-    },
-    submitButton: document.querySelector('input[type="submit"]'),
-  }
-
   const initialState = {
     feeds: [], // список новостных лент (добавленных URL)
     process: {
@@ -56,18 +49,24 @@ export default () => {
     },
   }
 
-  const state = onChange(initialState, render())
+  const state = onChange(initialState, render)
   elements.fields.url.addEventListener('input', (e) => {
     state.process.processState = 'filling'
     const { value } = e.target
     state.form.fields.url = value
     state.form.fieldsUI.touched.url = true
-    const errors = validate()
-    errors.catch(error => state.form.errors = error)
-    state.form.valid = isEmpty(state.form.errors)
+    validate(state.form.fields.url, state.feeds)
+      .then(() => {
+        state.form.errors.url = null
+        state.form.valid = true
+      })
+      .catch((error) => {
+        state.form.errors.url = error.message
+        state.form.valid = false
+      })
   })
 
-  elements.submitButton.addEventListener('submit', (e) => {
+  elements.form.addEventListener('submit', (e) => {
     e.preventDefault()
 
     state.process.processState = 'pushing'
