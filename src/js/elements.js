@@ -3,8 +3,10 @@ const elements = {
   fields: {
     url: document.getElementById('url-input'),
   },
-  submitButton: document.querySelector('input[type="submit"]'),
+  submitButton: document.querySelector('[type="submit"]'),
   feedback: document.querySelector('.feedback'),
+  feedsElement: document.querySelector('.feeds'),
+  postsElement: document.querySelector('.posts'),
 }
 
 export default elements
