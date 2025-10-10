@@ -1,15 +1,20 @@
 const initialState = {
   data: {
-    feeds: [], // список новостных лент (добавленных URL) [{id: 1, url: '', title: Title1, description: Description1}, {id: 2, url: '', title: Title2, description: description2}]
-    posts: [], // посты в новостных лентах [{id: 1, feedId: 2, postName: ''}, {id: 2, feedId: 1, postName: ''}]
+    feeds: [], // список новостных лент (добавленных URL) [{id: 1, url: '', title: 'Title1', description: 'Description1'}, {id: 2, url: '', title: 'Title2', description: 'description2'}]
+    posts: [], // посты в новостных лентах [{id: 1, feedId: 2, title: 'Title1', description: 'Description1', link: 'Link1'}, {id: 2, feedId: 1, title: 'Title2', description: 'Descriprion2', link: 'Link2'}]
   },
   process: {
     processState: 'filling', // filling, pushing
-    errors: {}, // ошибки данных, сетевые ошибки
+    success: false,
+    errors: {
+      dataError: null,
+    }, // ошибки данных, сетевые ошибки
   },
   form: {
     valid: true, // валидна ли форма
-    errors: {}, // ошибки валидации
+    errors: {
+      url: null,
+    }, // ошибки валидации
     fields: {
       url: '', // текстовое поле для URL
     },

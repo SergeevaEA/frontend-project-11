@@ -1,6 +1,6 @@
 import * as yup from 'yup'
 
-const schema = yup.string().url('url').required('required')
+const schema = yup.string().url('url')
 const validate = (url, data) => {
   return schema.validate(url)
     .then(() => {

@@ -6,5 +6,9 @@ export default (data) => {
   if (parserError.length > 0) {
     throw new Error('parsingError')
   }
+  const rss = dom.querySelector('rss, feed')
+  if (!rss) {
+    throw new Error('rss')
+  }
   return dom
 }
