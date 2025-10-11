@@ -6,10 +6,13 @@ import validate from './validate.js'
 import elements from './elements.js'
 import getData from './getData.js'
 import parseData from './parseData.js'
-import uniqueId from 'lodash/uniqueId.js'
+import updateDataInState from './updateDataInState.js'
+import checkEvery5Seconds from './checkEvery5Seconds.js'
 
 export default () => {
   const state = onChange(initialState, (path, value) => render(path, value, state)) // (initialState, render)
+  checkEvery5Seconds(state)
+
   elements.fields.url.addEventListener('input', (e) => {
     state.process.processState = 'filling'
     const { value } = e.target
@@ -35,22 +38,7 @@ export default () => {
           getData(url)
             .then(data => parseData(data))
             .then((dom) => {
-              // Фиды
-              const feedId = uniqueId('')
-              const title = dom.querySelector('title').textContent.trim()
-              const description = dom.querySelector('description').textContent.trim()
-              state.data.feeds.push({ feedId, url, title, description })
-
-              // Получаем все <item>
-              const items = dom.querySelectorAll('item')
-              // Преобразуем NodeList в массив и извлекаем нужные поля
-              Array.from(items).map((item) => {
-                const postId = uniqueId('')
-                const title = item.querySelector('title').textContent.trim()
-                const description = item.querySelector('description').textContent.trim()
-                const link = item.querySelector('link').textContent.trim()
-                state.data.posts.push({ postId, feedId, title, description, link })
-              })
+              updateDataInState(state, dom, url)
 
               state.form.fields.url = ''
               state.process.errors.dataError = null
