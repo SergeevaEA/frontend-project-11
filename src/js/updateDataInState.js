@@ -18,7 +18,7 @@ export default (state, dom, url) => {
       const title = item.querySelector('title').textContent.trim()
       const description = item.querySelector('description').textContent.trim()
       const link = item.querySelector('link').textContent.trim()
-      state.data.posts.push({ postId, feedId, title, description, link })
+      state.data.posts.push({ postId, feedId, title, description, link, isRead: false })
     })
   }
   else {
@@ -34,7 +34,7 @@ export default (state, dom, url) => {
         const title = item.querySelector('title').textContent.trim()
         const description = item.querySelector('description').textContent.trim()
         const postId = uniqueId('')
-        state.data.posts.push({ postId, feedId, title, description, link })
+        state.data.posts.push({ postId, feedId, title, description, link, isRead: false })
       }
     })
   }

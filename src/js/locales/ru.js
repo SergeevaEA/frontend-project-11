@@ -10,5 +10,10 @@ export default {
         parsingError: 'Ошибка парсинга',
       },
     },
+    buttons: {
+      previewButton: 'Просмотр',
+    },
+    feeds: 'Фиды',
+    posts: 'Посты',
   },
 }

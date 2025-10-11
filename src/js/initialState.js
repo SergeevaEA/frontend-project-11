@@ -1,7 +1,7 @@
 const initialState = {
   data: {
-    feeds: [], // список новостных лент (добавленных URL) [{id: 1, url: '', title: 'Title1', description: 'Description1'}, {id: 2, url: '', title: 'Title2', description: 'description2'}]
-    posts: [], // посты в новостных лентах [{id: 1, feedId: 2, title: 'Title1', description: 'Description1', link: 'Link1'}, {id: 2, feedId: 1, title: 'Title2', description: 'Descriprion2', link: 'Link2'}]
+    feeds: [], // список новостных лент (добавленных URL) [{feedId: 1, url: '', title: 'Title1', description: 'Description1'}, {feedId: 2, url: '', title: 'Title2', description: 'description2'}]
+    posts: [], // посты в новостных лентах [{postId: 1, feedId: 2, title: 'Title1', description: 'Description1', link: 'Link1', isRead: false}, {postId: 2, feedId: 1, title: 'Title2', description: 'Descriprion2', link: 'Link2', isRead: false}]
   },
   process: {
     processState: 'filling', // filling, pushing

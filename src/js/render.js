@@ -47,7 +47,6 @@ const render = (path, value, state) => {
 
   const feeds = state.data.feeds
   const posts = state.data.posts
-  console.log(state)
 
   if (feeds.length > 0) {
     const feedsData = feeds.map((feed) => {
@@ -60,23 +59,24 @@ const render = (path, value, state) => {
     elements.feedsElement.innerHTML = `
     <div class="card border-0">
       <div class="card-body">
-        <h2 class="card-title h4">Фиды</h2>
+        <h2 class="card-title h4">${i18nInstance.t(`feeds`)}</h2>
       </div>
       <ul class="list-group border-0 rounded-0">${feedsData.join('')}</ul>
     </div>`
 
     if (posts.length > 0) {
       const postsData = posts.map((post) => {
+        const titleTipe = post.isRead ? 'fw-normal link-secondary' : 'fw-bold'
         return `<li class="list-group-item d-flex justify-content-between align-items-start border-0 border-end-0">
-                <a href=${post.link} class="fw-bold" data-id="40" target="_blank" rel="noopener noreferrer">${post.title}</a>
-                <button type="button" class="btn btn-outline-primary btn-sm" data-id="40" data-bs-toggle="modal" data-bs-target="#modal">Просмотр</button>
+                <a href="${post.link}" class="${titleTipe}" data-id="${post.postId}" target="_blank" rel="noopener noreferrer">${post.title}</a>
+                <button type="button" class="btn btn-outline-primary btn-sm" data-id="${post.postId}" data-bs-toggle="modal" data-bs-target="#modal">${i18nInstance.t(`buttons.previewButton`)}</button>
               </li>`
       })
 
       elements.postsElement.innerHTML = `
         <div class="card border-0">
           <div class="card-body">
-            <h2 class="card-title h4">Посты</h2>
+            <h2 class="card-title h4">${i18nInstance.t(`posts`)}</h2>
           </div>
           <ul class="list-group border-0 rounded-0">${postsData.join('')}</ul>
         </div>`

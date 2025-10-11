@@ -8,9 +8,11 @@ import getData from './getData.js'
 import parseData from './parseData.js'
 import updateDataInState from './updateDataInState.js'
 import checkEvery5Seconds from './checkEvery5Seconds.js'
+import handlers from './handlers.js'
 
 export default () => {
   const state = onChange(initialState, (path, value) => render(path, value, state)) // (initialState, render)
+  handlers(state)
   checkEvery5Seconds(state)
 
   elements.fields.url.addEventListener('input', (e) => {
