@@ -6,7 +6,7 @@ export default {
         url: 'Ссылка должна быть валидным URL',
         duplicate: 'RSS уже существует',
         rss: 'Ресурс не содержит валидный RSS',
-        getDataError: 'Ошибка сети',
+        networkError: 'Ошибка сети',
         parsingError: 'Ошибка парсинга',
       },
     },
