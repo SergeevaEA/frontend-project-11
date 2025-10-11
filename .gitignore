@@ -2,3 +2,4 @@
 *.log
 .DS_Store
 /dist
+/* eslint-disable no-undef */
