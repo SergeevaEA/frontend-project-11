@@ -1,5 +1,6 @@
-### Github Actions:
+### Hexlet and Github Actions:
 [![Action Status](https://github.com/SergeevaEA/frontend-project-11/actions/workflows/build.yml/badge.svg)](https://github.com/SergeevaEA/frontend-project-11/actions/workflows/build.yml)
+[![Hexlet-check](https://github.com/SergeevaEA/frontend-project-11/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/SergeevaEA/frontend-project-11/actions/workflows/hexlet-check.yml)
 
 ### Качество кода:
 [![Maintainability](https://sonarcloud.io/api/project_badges/measure?project=SergeevaEA_frontend-project-11&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=SergeevaEA_frontend-project-11)
